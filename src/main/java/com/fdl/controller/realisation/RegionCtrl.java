@@ -15,7 +15,6 @@ import java.util.Comparator;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:8080"})
 @RestController
 @RequestMapping("/api/regions")
 public class RegionCtrl {
