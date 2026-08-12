@@ -13,7 +13,7 @@ import com.fdl.service.utilisateur.AuthServ;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:8080"})
+// @CrossOrigin(origins = {"http://localhost:5173", "http://localhost:8080"})
 public class AuthCtrl {
 
     @Autowired
