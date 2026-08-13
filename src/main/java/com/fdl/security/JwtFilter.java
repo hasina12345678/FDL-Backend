@@ -29,6 +29,13 @@ public class JwtFilter extends OncePerRequestFilter {
         String email = null;
         String token = null;
 
+        // ✅ SOLUTION ICI : Autoriser la méthode OPTIONS sans vérification de token
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            filterChain.doFilter(request, response);
+            return; // IMPORTANT : on arrête le filtre ici et on passe la main
+        }
+
         // Vérifie la présence du Bearer Token
         if(authHeader != null && authHeader.startsWith("Bearer ")) {
             try {
