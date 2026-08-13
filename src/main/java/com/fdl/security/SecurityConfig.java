@@ -88,6 +88,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
             "https://fdl-backoffice.onrender.com",
+            "https://fdl-fzpx.onrender.com",
             "http://localhost:5173",
             "http://localhost:5174",
             "http://localhost:8080"
