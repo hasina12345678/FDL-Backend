@@ -89,6 +89,7 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(List.of(
             "https://fdl-backoffice.onrender.com",
             "https://fdl-fzpx.onrender.com",
+            "https://fdl-backend-ylx7.onrender.com",
             "http://localhost:5173",
             "http://localhost:5174",
             "http://localhost:8080"
@@ -119,7 +120,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/login").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/realisations").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/realisations").permitAll()
+                // .requestMatchers(HttpMethod.POST, "/api/realisations").permitAll()
                 .requestMatchers("/uploads/**").permitAll()
                 .anyRequest().authenticated()
             )
