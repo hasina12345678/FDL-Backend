@@ -81,11 +81,16 @@ public class UploadCtrl {
     @PostMapping
     public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) {
 
+        System.out.println("🔥🔥🔥 UPLOAD CTRL ATTEINT 🔥🔥🔥");
+
         if (file.isEmpty()) {
             return ResponseEntity.badRequest().body(Map.of("message", "Fichier vide."));
         }
 
         try {
+            
+            System.out.println("☁️ Appel Cloudinary...");
+
             Map uploadResult = cloudinary.uploader().upload(
                 file.getBytes(),
                 ObjectUtils.asMap(
