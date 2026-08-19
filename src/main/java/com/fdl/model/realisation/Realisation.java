@@ -57,6 +57,16 @@ public class Realisation {
     @Column(name = "photo", length = 255)
     private String photo;
 
+    @Column(name = "photoWidth")
+    private Integer photoWidth;
+
+    @Column(name = "photoHeight")
+    private Integer photoHeight;
+
+    @Column(name = "photoColor", length = 255)
+    private String photoColor;
+
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -64,7 +74,7 @@ public class Realisation {
     public Realisation() {
     }
 
-    public Realisation(String title, String summary, String description, Commune commune, R_Categorie categorie, Programme programme, SourceFinancement sourceFinancement, Integer annee, LocalDate dateRealisation, BigDecimal montant, BigDecimal latitude, BigDecimal longitude, String photo, LocalDateTime createdAt) {
+    public Realisation(String title, String summary, String description, Commune commune, R_Categorie categorie, Programme programme, SourceFinancement sourceFinancement, Integer annee, LocalDate dateRealisation, BigDecimal montant, BigDecimal latitude, BigDecimal longitude, String photo, Integer photoWidth, Integer photoHeight, String photoColor, LocalDateTime createdAt) {
         this.title = title;
         this.summary = summary;
         this.description = description;
@@ -78,6 +88,9 @@ public class Realisation {
         this.latitude = latitude;
         this.longitude = longitude;
         this.photo = photo;
+        this.photoWidth = photoWidth;
+        this.photoHeight = photoHeight;
+        this.photoColor = photoColor;
         this.createdAt = createdAt;
     }
 
@@ -96,6 +109,9 @@ public class Realisation {
     public BigDecimal getLatitude() { return latitude; }
     public BigDecimal getLongitude() { return longitude; }
     public String getPhoto() { return photo; }
+    public Integer getPhotoWidth() { return photoWidth; }
+    public Integer getPhotoHeight() { return photoHeight; }
+    public String getPhotoColor() { return photoColor; }
     public LocalDateTime getCreatedAt() { return createdAt; }
 
     public void setId(Long id) { this.id = id; }
@@ -112,6 +128,9 @@ public class Realisation {
     public void setLatitude(BigDecimal latitude) { this.latitude = latitude; }
     public void setLongitude(BigDecimal longitude) { this.longitude = longitude; }
     public void setPhoto(String photo) { this.photo = photo; }
+    public void setPhotoWidth(Integer photoWidth) { this.photoWidth = photoWidth; }
+    public void setPhotoHeight(Integer photoHeight) { this.photoHeight = photoHeight; }
+    public void setPhotoColor(String photoColor) { this.photoColor = photoColor; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
     @PrePersist

@@ -1,6 +1,8 @@
 package com.fdl.service.realisation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;      
+import org.springframework.data.domain.Pageable;   
 import org.springframework.stereotype.Service;
 
 import com.fdl.model.realisation.Realisation;
@@ -15,21 +17,21 @@ public class RealisationServ {
     @Autowired
     private RealisationRepo realisationRepo;
 
-
     public List<Realisation> findAll() {
         return realisationRepo.findAll();
     }
 
+    public Page<Realisation> findAllPaged(Pageable pageable) {
+        return realisationRepo.findAll(pageable);
+    }
 
     public Realisation save(Realisation realisation) {
         return realisationRepo.save(realisation);
     }
 
-
     public Realisation findById(Long id) {
         return realisationRepo.findById(id).orElse(null);
     }
-
 
     public Realisation update(Long id, Realisation realisationDetails) {
 
@@ -57,8 +59,9 @@ public class RealisationServ {
             realisation.setLongitude(realisationDetails.getLongitude());
 
             realisation.setPhoto(realisationDetails.getPhoto());
-
-            // realisation.setUpdatedAt(realisationDetails.getUpdatedAt());
+            realisation.setPhotoWidth(realisationDetails.getPhotoWidth());   // ← ajouté
+            realisation.setPhotoHeight(realisationDetails.getPhotoHeight()); // ← ajouté
+            realisation.setPhotoColor(realisationDetails.getPhotoColor());  // ← ajouté
 
             return realisationRepo.save(realisation);
         }
@@ -66,9 +69,7 @@ public class RealisationServ {
         return null;
     }
 
-
     public void delete(Long id) {
         realisationRepo.deleteById(id);
     }
-
 }

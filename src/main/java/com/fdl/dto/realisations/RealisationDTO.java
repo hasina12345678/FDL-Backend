@@ -38,6 +38,11 @@ public class RealisationDTO {
     private BigDecimal latitude;
     private BigDecimal longitude;
     private String photo;
+
+    private Integer photoWidth;
+    private Integer photoHeight;
+    private String photoColor;
+
     private LocalDateTime createdAt;
 
 }

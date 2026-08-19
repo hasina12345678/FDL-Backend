@@ -9,7 +9,16 @@ import com.fdl.dto.realisations.RealisationDTO;
 import com.fdl.model.realisation.*;
 import com.fdl.service.realisation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+
 
 @RestController
 @RequestMapping("/api/realisations")
@@ -51,6 +60,9 @@ public class RealisationCtrl {
                 r.getLatitude(),
                 r.getLongitude(),
                 r.getPhoto(),
+                r.getPhotoWidth(),   
+                r.getPhotoHeight(),  
+                r.getPhotoColor(),  
                 r.getCreatedAt()
         );
     }
@@ -70,6 +82,10 @@ public class RealisationCtrl {
         entity.setLatitude(dto.getLatitude());
         entity.setLongitude(dto.getLongitude());
         entity.setPhoto(dto.getPhoto());
+
+        entity.setPhotoWidth(dto.getPhotoWidth());   
+        entity.setPhotoHeight(dto.getPhotoHeight()); 
+        entity.setPhotoColor(dto.getPhotoColor());
 
         if (dto.getCommuneId() != null) {
             Commune commune = communeServ.findById(dto.getCommuneId());
@@ -106,6 +122,25 @@ public class RealisationCtrl {
                 .map(this::convertToDTO)
                 .toList();
     }
+
+
+
+    @GetMapping("/paged")
+    public ResponseEntity<Map<String, Object>> findPaged(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+        Page<Realisation> result = realisationServ.findAllPaged(pageable);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("items", result.getContent().stream().map(this::convertToDTO).toList());
+        response.put("hasMore", !result.isLast());
+        response.put("page", page);
+
+        return ResponseEntity.ok(response);
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<RealisationDTO> findById(@PathVariable Long id) {
