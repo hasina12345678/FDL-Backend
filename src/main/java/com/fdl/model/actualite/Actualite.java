@@ -27,18 +27,11 @@ public class Actualite {
     private String cover;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_auteur", nullable = false)
+    @JoinColumn(name = "id_auteur", nullable = true)
     private Auteur auteur;
-
-    @Column(name = "published_at")
-    private LocalDateTime publishedAt;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable( name = "a_actualite_categorie", joinColumns = @JoinColumn(name = "id_actualite"), inverseJoinColumns = @JoinColumn(name = "id_categorie"))
@@ -50,13 +43,12 @@ public class Actualite {
 
     public Actualite() {}
 
-    public Actualite(String title, String summary, String location, String cover, Auteur auteur, LocalDateTime publishedAt) {
+    public Actualite(String title, String summary, String location, String cover, Auteur auteur) {
         this.title = title;
         this.summary = summary;
         this.location = location;
         this.cover = cover;
         this.auteur = auteur;
-        this.publishedAt = publishedAt;
     }
 
     public Long getId() { return id; }
@@ -65,9 +57,7 @@ public class Actualite {
     public String getLocation() { return location; }
     public String getCover() { return cover; }
     public Auteur getAuteur() { return auteur; }
-    public LocalDateTime getPublishedAt() { return publishedAt; }
     public LocalDateTime getCreatedAt() { return createdAt; }
-    public LocalDateTime getUpdatedAt() { return updatedAt; }
     public List<Categorie> getCategories() { return categories; }
     public List<ActualiteDetail> getDetails() { return details; }
 
@@ -77,9 +67,7 @@ public class Actualite {
     public void setLocation(String location) { this.location = location; }
     public void setCover(String cover) { this.cover = cover; }
     public void setAuteur(Auteur auteur) { this.auteur = auteur; }
-    public void setPublishedAt(LocalDateTime publishedAt) { this.publishedAt = publishedAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
-    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
     public void setCategories(List<Categorie> categories) { this.categories = categories; }
     public void setDetails(List<ActualiteDetail> details) { this.details = details; }
 

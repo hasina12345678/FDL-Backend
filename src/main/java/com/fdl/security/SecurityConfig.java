@@ -67,6 +67,11 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/realisations/paged").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/upload").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/upload/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/media/upload").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/actualites").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/actualites/paged").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/actualites/*").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/categories").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

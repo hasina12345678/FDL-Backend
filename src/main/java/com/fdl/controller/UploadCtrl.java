@@ -170,11 +170,6 @@ public class UploadCtrl {
         }
     }
 
-    /**
-     * Cloudinary renvoie "colors": [["#4a7c6e", 42.3], ["#ffffff", 18.1], ...]
-     * — une liste de [couleur, pourcentage de présence], triée par dominance.
-     * On prend juste la première.
-     */
     @SuppressWarnings("unchecked")
     private String extractDominantColor(Map uploadResult) {
         try {

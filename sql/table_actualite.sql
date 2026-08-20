@@ -13,10 +13,8 @@ CREATE TABLE actualite (
     summary TEXT,
     location VARCHAR(255),
     cover VARCHAR(255),
-    id_auteur BIGINT NOT NULL,
-    published_at TIMESTAMP,
+    id_auteur BIGINT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_actualite FOREIGN KEY (id_auteur) REFERENCES auteur(id) ON DELETE CASCADE
 );
 
